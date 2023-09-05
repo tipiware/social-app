@@ -1,0 +1,19 @@
+version: "3.3"
+services:
+  server:
+    container_name: server
+    build:
+      context: './server'
+    restart: always
+    env_file:
+      - ./server/.env.prod
+  client:
+    container_name: client
+    build:
+      context: './client'
+    restart: always
+    depends_on:
+      - server
+    environment:
+      - PORT=3000
+
